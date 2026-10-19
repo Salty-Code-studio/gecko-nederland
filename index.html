@@ -1,0 +1,492 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gecko Nederland</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap">
+<style>
+/* Layout: Spanish summer poster. Sun-bleached ground, Gecko red as the loud voice,
+   Instagram photos as tilted prints, each product family in the colour of what's in the bottle,
+   the azulejo tile from the bottle as the only recurring ornament. */
+:root{
+  --bg:#FFF6E6;
+  --bg-2:#FFE9C2;
+  --fg:#2B0D0B;
+  --muted:#7A4A3E;
+  --red:#D0102B;
+  --red-ink:#FFF6E6;
+  --sun:#FFB81C;
+  --sea:#13708F;
+  --sea-ink:#FFF6E6;
+  --card:#FFFDF8;
+  --line:rgba(43,13,11,.14);
+  --caramel:#F6D49E;
+  --pist:#D9E6BF;
+  --rose:#F8D2DA;
+  --shadow:0 18px 40px -18px rgba(90,20,10,.45);
+  --display:"Shrikhand","Cooper Black",Georgia,serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --head-h:68px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1A0B09;--bg-2:#26110D;--fg:#FFEEDB;--muted:#D6AE9C;--red:#FF4A5F;--red-ink:#1A0B09;
+  --sun:#FFC24A;--sea:#1D6F8A;--sea-ink:#FFF6E6;--card:#2C1410;--line:rgba(255,238,219,.16);
+  --caramel:#3B2612;--pist:#232D18;--rose:#3A1A21;--shadow:0 18px 40px -18px rgba(0,0,0,.8);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1A0B09;--bg-2:#26110D;--fg:#FFEEDB;--muted:#D6AE9C;--red:#FF4A5F;--red-ink:#1A0B09;
+  --sun:#FFC24A;--sea:#1D6F8A;--sea-ink:#FFF6E6;--card:#2C1410;--line:rgba(255,238,219,.16);
+  --caramel:#3B2612;--pist:#232D18;--rose:#3A1A21;--shadow:0 18px 40px -18px rgba(0,0,0,.8);color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.04;text-wrap:balance;margin:0}
+h2{font-size:clamp(2.2rem,5vw,3.6rem)}
+h3{font-size:1.7rem}
+p{margin:0}
+[id]{scroll-margin-top:calc(var(--head-h) + env(safe-area-inset-top,0px) + 16px)}
+.lead{font-size:1.12rem;color:var(--muted);max-width:52ch}
+.btn{display:inline-flex;align-items:center;gap:.5em;font:700 1rem/1 var(--body);padding:1em 1.4em;border-radius:999px;text-decoration:none;border:2px solid var(--red);cursor:pointer;transition:transform .2s cubic-bezier(.22,1,.36,1);white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-red{background:var(--red);color:var(--red-ink)}
+.btn-ghost{background:transparent;color:var(--fg);border-color:var(--fg)}
+
+.tiles{height:34px;background:
+  radial-gradient(circle at 50% 50%,var(--sun) 0 5px,transparent 6px),
+  radial-gradient(circle at 0 0,var(--sea) 0 12px,transparent 13px),
+  radial-gradient(circle at 100% 0,var(--sea) 0 12px,transparent 13px),
+  radial-gradient(circle at 0 100%,var(--sea) 0 12px,transparent 13px),
+  radial-gradient(circle at 100% 100%,var(--sea) 0 12px,transparent 13px),
+  var(--bg);background-size:34px 34px;border-block:2px solid var(--sea)}
+
+/* header: solid, sticky, edge to edge. Desktop = one row, phones = slim row + dropdown */
+header{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px);transition:box-shadow .25s}
+header.scrolled{box-shadow:0 10px 24px -18px rgba(43,13,11,.45)}
+.nav{display:flex;align-items:center;gap:20px;height:var(--head-h)}
+.logo{flex:none;display:flex;align-items:center}
+.logo img{height:44px;width:auto}
+.links{display:flex;gap:6px;list-style:none;margin:0 0 0 auto;padding:0;font-weight:600;font-size:.95rem}
+.links a{display:block;text-decoration:none;padding:.5em .75em;border-radius:999px;white-space:nowrap}
+.links a:hover{background:var(--bg-2);color:var(--red)}
+.nav .btn{flex:none;padding:.7em 1.1em;font-size:.9rem}
+.menu-btn{display:none}
+@media (max-width:900px){
+  :root{--head-h:64px}
+  .logo img{height:38px}
+  .nav{gap:10px}
+  .nav .btn{margin-left:auto;padding:.65em 1em;font-size:.85rem}
+  .menu-btn{display:grid;place-items:center;flex:none;width:44px;height:44px;border:1.5px solid var(--line);border-radius:999px;background:transparent;color:var(--fg);cursor:pointer;padding:0}
+  .menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:18px;height:2px;background:currentColor;border-radius:2px;transition:transform .25s cubic-bezier(.22,1,.36,1),opacity .2s}
+  .menu-btn span{position:relative}
+  .menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}
+  .menu-btn span::before{top:-6px}.menu-btn span::after{top:6px}
+  header.open .menu-btn span{background:transparent}
+  header.open .menu-btn span::before{transform:translateY(6px) rotate(45deg)}
+  header.open .menu-btn span::after{transform:translateY(-6px) rotate(-45deg)}
+  .links{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;margin:0;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 18px 30px -20px rgba(43,13,11,.5);padding:8px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px));max-height:calc(100dvh - var(--head-h) - env(safe-area-inset-top,0px));overflow-y:auto}
+  header.open .links{display:flex}
+  .links a{font-size:1.1rem;padding:.85em .25em;border-radius:0;border-bottom:1px solid var(--line)}
+  .links li:last-child a{border-bottom:0}
+  .links a:hover{background:transparent}
+}
+@media (max-width:360px){.nav .btn{padding:.6em .8em;font-size:.8rem}}
+
+/* hero */
+.hero{padding-block:56px 80px;display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(3.4rem,9vw,7.2rem);color:var(--red);letter-spacing:-.01em}
+.hero h1 span{display:block;color:var(--fg);font-size:.4em;margin-top:.4em;letter-spacing:0}
+.hero .lead{margin-top:24px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.prints{position:relative;min-height:520px}
+.print{position:absolute;margin:0;background:var(--card);padding:10px 10px 36px;box-shadow:var(--shadow);border-radius:3px;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.print img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.print figcaption{position:absolute;bottom:9px;left:12px;right:12px;font-style:italic;font-weight:500;font-size:.85rem;color:var(--muted)}
+.p1{width:56%;left:22%;top:0;transform:rotate(-2deg);z-index:3}
+.p2{width:40%;left:0;top:36%;transform:rotate(-7deg);z-index:2}
+.p3{width:40%;right:0;top:24%;transform:rotate(6deg);z-index:2}
+.print:hover{transform:rotate(0) scale(1.03);z-index:5}
+.sticker{position:absolute;z-index:4;right:3%;top:-3%;width:112px;height:112px;border-radius:50%;background:var(--sun);color:#2B0D0B;display:grid;place-items:center;text-align:center;font-family:var(--display);font-size:1.05rem;line-height:1.05;transform:rotate(12deg);box-shadow:var(--shadow)}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;padding-block:32px 56px;gap:36px}
+  .prints{min-height:0;aspect-ratio:1/1.05;max-width:520px;width:100%;margin-inline:auto}
+  .sticker{width:92px;height:92px;font-size:.9rem}
+}
+
+section{padding-block:96px}
+
+/* range: one row per family, each in its own colour */
+.range-head{display:grid;grid-template-columns:1fr 1fr;gap:24px 48px;align-items:end;margin-bottom:48px}
+.range{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start}
+.fam{border-radius:26px;overflow:hidden;display:flex;flex-direction:column}
+.fam:nth-child(1){background:var(--caramel)}
+.fam:nth-child(2){background:var(--pist);margin-top:56px}
+.fam:nth-child(3){background:var(--rose);margin-top:20px}
+.fam img{aspect-ratio:4/4.3;object-fit:cover;width:100%}
+.fam .body{padding:24px 24px 28px;display:grid;gap:14px}
+.fam h3{color:var(--red)}
+.fam .new{justify-self:start;background:var(--red);color:var(--red-ink);font-weight:700;font-size:.8rem;padding:.35em .7em;border-radius:6px;transform:rotate(-3deg)}
+.flavours{list-style:none;margin:4px 0 0;padding:14px 0 0;border-top:1.5px dashed color-mix(in srgb,var(--fg) 30%,transparent);display:grid;gap:8px}
+.flavours li{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.flavours b{font-weight:800;flex:none}
+.flavours span{color:var(--muted);font-size:.93rem;text-align:right}
+@media (max-width:900px){
+  .range-head{grid-template-columns:1fr}
+  .range{grid-template-columns:1fr;max-width:560px;margin-inline:auto}
+  .fam:nth-child(n){margin-top:0}
+}
+
+/* spritz */
+.spritz{background:var(--bg-2)}
+.spritz-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.spritz-photos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.spritz-photos img{border-radius:18px;aspect-ratio:4/5;object-fit:cover;width:100%;box-shadow:var(--shadow)}
+.spritz-photos img:last-child{margin-top:56px}
+.recipe{display:grid;gap:22px}
+.ing{display:flex;flex-wrap:wrap;gap:8px}
+.ing span{border:2px solid var(--fg);border-radius:999px;padding:.4em .85em;font-weight:600;font-size:.93rem}
+.ing span.hl{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:center}
+.steps li::before{content:counter(s);font-family:var(--display);font-size:1.4rem;color:var(--red);background:var(--card);width:40px;height:40px;border-radius:50%;display:grid;place-items:center}
+.tag-us{font-weight:600}
+.tag-us a{color:var(--red)}
+@media (max-width:900px){.spritz-grid{grid-template-columns:1fr}}
+
+/* freezer */
+.cold{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;background:var(--sea);color:var(--sea-ink);border-radius:28px;padding:28px clamp(22px,4vw,48px) 28px 28px;overflow:hidden}
+.cold img{width:200px;border-radius:16px;aspect-ratio:9/13;object-fit:cover;transform:rotate(-3deg)}
+.cold h3{font-size:clamp(1.7rem,3.4vw,2.6rem)}
+.cold p{margin-top:12px;max-width:54ch;font-size:1.05rem}
+@media (max-width:640px){.cold{grid-template-columns:1fr;padding:24px}.cold img{width:150px}}
+
+/* tour list */
+.tour{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.tour figure{margin:0;position:sticky;top:calc(var(--head-h) + env(safe-area-inset-top,0px) + 24px)}
+.tour figure img{border-radius:20px;aspect-ratio:3/4;object-fit:cover;width:100%;transform:rotate(-1.5deg)}
+.tour figure figcaption{margin-top:12px;font-style:italic;color:var(--muted);font-size:.92rem}
+.dates{list-style:none;margin:32px 0 0;padding:0;border-top:2px solid var(--fg)}
+.dates li{border-bottom:1px solid var(--line)}
+.dates a{display:grid;grid-template-columns:7.5em 1fr auto;gap:16px;align-items:baseline;padding:18px 4px;text-decoration:none}
+.dates a:hover{background:var(--bg-2)}
+.dates time{font-weight:800;color:var(--red);font-variant-numeric:tabular-nums}
+.dates strong{display:block;font-size:1.15rem}
+.dates small{display:block;color:var(--muted);font-size:.93rem;margin-top:2px}
+.dates .go{font-weight:600;font-size:.88rem;white-space:nowrap}
+@media (max-width:900px){.tour{grid-template-columns:1fr}.tour figure{position:static;max-width:420px}}
+@media (max-width:520px){.dates a{grid-template-columns:1fr;gap:4px}.dates .go{display:none}}
+
+/* trade */
+.trade{background:var(--fg);color:var(--bg)}
+.trade-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
+.trade h2{color:var(--sun)}
+.trade p{margin-top:18px;max-width:46ch;font-size:1.12rem;color:color-mix(in srgb,var(--bg) 82%,transparent)}
+.phone{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:32px}
+.phone .num{font-family:var(--display);font-size:2rem;color:var(--bg);user-select:all}
+.copy{background:transparent;border:2px solid currentColor;color:inherit;border-radius:999px;padding:.4em .9em;font:600 .85rem var(--body);cursor:pointer}
+form{background:var(--bg);color:var(--fg);border-radius:24px;padding:28px;display:grid;gap:16px;min-width:0}
+form h3{color:var(--red)}
+label{display:grid;gap:6px;font-weight:600;font-size:.92rem}
+input,select,textarea{font:inherit;font-weight:400;padding:.8em .9em;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--fg);width:100%;min-width:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ok{background:var(--bg-2);border-radius:12px;padding:12px 14px;font-weight:600}
+@media (max-width:900px){.trade-grid{grid-template-columns:1fr}}
+@media (max-width:480px){.row2{grid-template-columns:1fr}form{padding:22px}}
+
+/* instagram */
+.ig-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;margin-bottom:32px}
+.ig{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.ig a{position:relative;display:block;overflow:hidden;border-radius:10px}
+.ig img{aspect-ratio:1/1;object-fit:cover;width:100%;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.ig a:hover img{transform:scale(1.05)}
+.ig .cap{position:absolute;inset:auto 0 0 0;padding:28px 12px 10px;background:linear-gradient(transparent,rgba(26,8,6,.85));color:#FFF6E6;font-size:.82rem;line-height:1.35;opacity:0;transition:opacity .2s}
+.ig a:hover .cap,.ig a:focus-visible .cap{opacity:1}
+@media (hover:none){.ig .cap{opacity:1}}
+@media (max-width:760px){.ig{grid-template-columns:repeat(2,1fr)}}
+
+footer{padding-block:56px 40px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+.foot h4{font-size:.95rem;margin:0 0 12px;font-weight:800}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;color:var(--muted)}
+.foot img{height:56px;width:auto}
+.foot p{color:var(--muted);margin-top:14px;max-width:36ch}
+.nix{display:inline-flex;align-items:center;gap:10px;margin-top:16px;font-weight:700}
+.nix b{background:var(--fg);color:var(--bg);padding:.3em .6em;border-radius:6px}
+.credit{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+
+/* age gate */
+.gate{position:fixed;inset:0;z-index:60;display:grid;place-items:center;background:color-mix(in srgb,#1A0B09 60%,transparent);padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.gate-card{background:var(--bg);border-radius:28px;max-width:400px;width:100%;padding:32px 26px;text-align:center;display:grid;gap:16px;justify-items:center;box-shadow:var(--shadow)}
+.gate-card img{height:72px;width:auto}
+.gate-card h2{font-size:2rem;color:var(--red)}
+.gate-card .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.gate-card small{color:var(--muted)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate-card">
+    <img src="img/logo.png" alt="Gecko">
+    <h2 id="gate-title">Ben je 18 of ouder?</h2>
+    <p>Gecko is alcohol. Deze site is alleen voor mensen van 18 jaar en ouder.</p>
+    <div class="btns">
+      <button class="btn btn-red" id="gate-yes" type="button">Ja, ik ben 18+</button>
+      <button class="btn btn-ghost" id="gate-no" type="button">Nee</button>
+    </div>
+    <small id="gate-msg">NIX18. Geniet, maar drink met mate.</small>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Gecko Nederland, terug naar boven"><img src="img/logo.png" alt="Gecko"></a>
+    <ul class="links" id="nav-links">
+      <li><a href="#assortiment">Assortiment</a></li>
+      <li><a href="#spritz">Gecko Spritz</a></li>
+      <li><a href="#proeven">Proeverijen</a></li>
+      <li><a href="#slijters">Voor slijterijen</a></li>
+      <li><a href="#instagram">Instagram</a></li>
+    </ul>
+    <a class="btn btn-red" href="https://gecko-nederland.nl/gecko-verkooppunten/" target="_blank" rel="noopener">Waar te koop</a>
+    <button class="menu-btn" type="button" aria-controls="nav-links" aria-expanded="false" aria-label="Menu"><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <h1>Gek op Gecko!<span>Spaanse likeur, recht uit de vriezer.</span></h1>
+      <p class="lead">Het begon met Gecko Caramel: 27% caramelvodka in een aluminium fles vol Spaanse tegels. Nu staan Sweet Rice, Crema Catalana, drie Milky Gecko's en twee biologische cava's ernaast.</p>
+      <div class="ctas">
+        <a class="btn btn-red" href="#spritz">Maak de Gecko Spritz</a>
+        <a class="btn btn-ghost" href="#assortiment">Bekijk de flessen</a>
+      </div>
+    </div>
+    <div class="prints">
+      <div class="sticker">Nieuw:<br>Pistacho!</div>
+      <figure class="print p1"><img src="img/spritz-1.jpg" alt="Twee glazen Gecko Spritz die tegen elkaar proosten"><figcaption>Gecko Spritz, juli</figcaption></figure>
+      <figure class="print p2"><img src="img/caramel-beach.jpg" alt="Fles Gecko Caramel in het zand naast sinaasappels"><figcaption>Caramel op het strand</figcaption></figure>
+      <figure class="print p3"><img src="img/milky-pool.jpg" alt="Milky Gecko Fresa en Melón aan de rand van een zwembad"><figcaption>Fresa of Melón?</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="tiles" aria-hidden="true"></div>
+
+  <section id="assortiment">
+    <div class="wrap">
+      <div class="range-head">
+        <h2>Welke fles pak jij?</h2>
+        <p class="lead">Alles smaakt het best ijskoud. Caramel mag de vriezer in, Milky Gecko bewaar je na het openen in de koelkast.</p>
+      </div>
+      <div class="range">
+        <article class="fam">
+          <img src="img/proeverij.jpg" alt="Rij Gecko likeurflessen met Spaanse tegelprint op een proeftafel">
+          <div class="body">
+            <h3>Gecko likeuren</h3>
+            <p>De flessen met de tegelprint. Hier begon het mee.</p>
+            <ul class="flavours">
+              <li><b>Caramel</b> <span>helder en krachtig</span></li>
+              <li><b>Sweet Rice</b> <span>romig, naar arroz con leche</span></li>
+              <li><b>Crema Catalana</b> <span>romig en kruidig</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="fam">
+          <img src="img/pistacho-2.jpg" alt="Milky Gecko Pistacho tussen pistachenoten en chocolade">
+          <div class="body">
+            <span class="new">Nieuwe smaak</span>
+            <h3>Milky Gecko</h3>
+            <p>Zachte crème-likeur uit Spanje, in de zwarte fles.</p>
+            <ul class="flavours">
+              <li><b>Fresa</b> <span>aardbei</span></li>
+              <li><b>Melón</b> <span>meloen</span></li>
+              <li><b>Pistacho</b> <span>pistache met Dubai-chocolade</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="fam">
+          <img src="img/cava.jpg" alt="Gecko Cava Brut en Brut Rosé tussen roze bloemen">
+          <div class="body">
+            <h3>Gecko Cava</h3>
+            <p>Droog en biologisch. Kies brut of rosé, fout gaat het niet.</p>
+            <ul class="flavours">
+              <li><b>Brut</b> <span>de klassieke</span></li>
+              <li><b>Brut Rosé</b> <span>fris, met een roze fles</span></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="spritz" id="spritz">
+    <div class="wrap spritz-grid">
+      <div class="spritz-photos">
+        <img src="img/spritz-2.jpg" alt="Glazen Gecko Spritz omhoog tegen een blauwe lucht">
+        <img src="img/spritz-bag.jpg" alt="Netje met Gecko Caramel, cava en sinaasappels">
+      </div>
+      <div class="recipe">
+        <h2>De Gecko Spritz</h2>
+        <p class="lead">Caramel met cava. Dit zit erin:</p>
+        <div class="ing">
+          <span class="hl">Gecko Caramel</span><span class="hl">Gecko Cava</span><span>troebele appelsap</span><span>bruiswater</span><span>sinaasappel</span><span>veel ijs</span>
+        </div>
+        <ol class="steps">
+          <li><p>Vul een groot wijnglas tot de rand met ijs.</p></li>
+          <li><p>Schenk Gecko Caramel en een scheut troebele appelsap erover.</p></li>
+          <li><p>Top af met Gecko Cava en een plons bruiswater.</p></li>
+          <li><p>Een schijfje sinaasappel erbij. Proost.</p></li>
+        </ol>
+        <p class="tag-us">Gemaakt? Tag <a href="https://www.instagram.com/geckonederland/" target="_blank" rel="noopener">@geckonederland</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cold">
+        <img src="img/ijskoud.jpg" alt="Fles Gecko die afkoelt tussen de stenen in een rivier">
+        <div>
+          <h3>IJskoud het lekkerst</h3>
+          <p>Gecko kan in de koelkast en in de vriezer, en de aluminium fles koelt snel af. Zet er dus gewoon altijd een klaar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proeven" style="padding-top:0">
+    <div class="wrap tour">
+      <figure>
+        <img src="img/ladiesnight.jpg" alt="Gecko proeftafel met tegelprint-display bij Kinepolis Breda">
+        <figcaption>De proeftafel bij Kinepolis Breda, 7 oktober</figcaption>
+      </figure>
+      <div>
+        <h2>Hier stond de proeftafel</h2>
+        <p class="lead" style="margin-top:16px">De volgende datum zetten we eerst op Instagram.</p>
+        <ul class="dates">
+          <li><a href="https://www.instagram.com/p/DeMvxGgCA3f/" target="_blank" rel="noopener"><time datetime="2026-10-07">7 okt</time><span><strong>Kinepolis Breda</strong><small>Ladies night</small></span><span class="go">Bekijk post</span></a></li>
+          <li><a href="https://www.instagram.com/p/DdeC26yInaf/" target="_blank" rel="noopener"><time datetime="2026-09-19">19 sep</time><span><strong>Mitra, Roermond</strong><small>Proeverij in de winkel</small></span><span class="go">Bekijk post</span></a></li>
+          <li><a href="https://www.instagram.com/p/Dcia57OISbU/" target="_blank" rel="noopener"><time datetime="2026-08-27">27 aug</time><span><strong>Vino y Pintxos, Denekamp</strong><small>Spaanse delicatessen, met Gecko in het schap</small></span><span class="go">Bekijk post</span></a></li>
+          <li><a href="https://www.instagram.com/p/Db76VxUogW5/" target="_blank" rel="noopener"><time datetime="2026-08-12">12 aug</time><span><strong>Vakantiepark De Bergen</strong><small>Proeverij op het park</small></span><span class="go">Bekijk post</span></a></li>
+          <li><a href="https://www.instagram.com/p/DaQ85YuCOva/" target="_blank" rel="noopener"><time datetime="2026-07-01">1 jul</time><span><strong>Kinepolis Breda</strong><small>Eerst proeven, toen zelf een film</small></span><span class="go">Bekijk post</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="trade" id="slijters">
+    <div class="wrap trade-grid">
+      <div>
+        <h2>Gecko in je schap?</h2>
+        <p>Heb je een slijterij, een café of een Spaanse delicatessenzaak? Bel ons of laat je gegevens achter. Mitra in Roermond en Vino y Pintxos in Denekamp gingen je voor.</p>
+        <div class="phone">
+          <span class="num" id="phone">0229-851304</span>
+          <button class="copy" id="copy-phone" type="button">Kopieer nummer</button>
+        </div>
+      </div>
+      <form id="trade-form" novalidate>
+        <h3>Verkooppunt worden</h3>
+        <div class="row2">
+          <label for="f-name">Naam<input id="f-name" required autocomplete="name"></label>
+          <label for="f-biz">Bedrijf<input id="f-biz" required autocomplete="organization"></label>
+        </div>
+        <div class="row2">
+          <label for="f-city">Plaats<input id="f-city" autocomplete="address-level2"></label>
+          <label for="f-type">Soort zaak
+            <select id="f-type"><option>Slijterij</option><option>Horeca</option><option>Delicatessen</option><option>Iets anders</option></select>
+          </label>
+        </div>
+        <label for="f-mail">E-mail<input id="f-mail" type="email" required autocomplete="email"></label>
+        <label for="f-msg">Welke flessen wil je voeren?<textarea id="f-msg" rows="3"></textarea></label>
+        <button class="btn btn-red" type="submit">Verstuur</button>
+        <p class="ok" id="form-ok" hidden>Dit is een ontwerp. Op de echte site komt je aanvraag hier binnen bij Gecko Nederland.</p>
+      </form>
+    </div>
+  </section>
+
+  <section id="instagram">
+    <div class="wrap">
+      <div class="ig-head">
+        <h2>Gecko op Instagram</h2>
+        <a class="btn btn-ghost" href="https://www.instagram.com/geckonederland/" target="_blank" rel="noopener">Volg @geckonederland</a>
+      </div>
+      <div class="ig">
+        <a href="https://www.instagram.com/p/DbDmfIWIGKW/" target="_blank" rel="noopener"><img src="img/spritz-1.jpg" alt="Gecko Spritz, proostende glazen" loading="lazy"><span class="cap">Thuis, op het strand of op het terras?</span></a>
+        <a href="https://www.instagram.com/p/DaklwdqIgE7/" target="_blank" rel="noopener"><img src="img/pistacho-1.jpg" alt="Een glaasje Milky Gecko Pistacho proeven" loading="lazy"><span class="cap">Pistacho, koud bewaren.</span></a>
+        <a href="https://www.instagram.com/p/DYzAj8YI4lW/" target="_blank" rel="noopener"><img src="img/zomer.jpg" alt="Gecko cava en Caramel op een strandlaken" loading="lazy"><span class="cap">Staan jouw flessen al koud?</span></a>
+        <a href="https://www.instagram.com/p/DZerdhAIpnE/" target="_blank" rel="noopener"><img src="img/cava.jpg" alt="Gecko Cava brut en rosé" loading="lazy"><span class="cap">Brut of rosé?</span></a>
+        <a href="https://www.instagram.com/p/DZ9iR5VoZ3I/" target="_blank" rel="noopener"><img src="img/spritz-3.jpg" alt="Gecko Spritz in de zon" loading="lazy"><span class="cap">Dertig graden plus.</span></a>
+        <a href="https://www.instagram.com/p/DZKO1YQoeas/" target="_blank" rel="noopener"><img src="img/milky-pool.jpg" alt="Milky Melón en Fresa aan het zwembad" loading="lazy"><span class="cap">Buiten regen, binnen dromen.</span></a>
+        <a href="https://www.instagram.com/p/DbLjKk5om2I/" target="_blank" rel="noopener"><img src="img/pistacho-3.jpg" alt="Fles Milky Gecko Pistacho" loading="lazy"><span class="cap">Elke druppel.</span></a>
+        <a href="https://www.instagram.com/p/Daxn6sIMaFk/" target="_blank" rel="noopener"><img src="img/caramel-beach.jpg" alt="Gecko Caramel op het strand" loading="lazy"><span class="cap">Zon, zand en Caramel.</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="tiles" aria-hidden="true"></div>
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img src="img/logo.png" alt="Gecko">
+        <p>Gecko Nederland haalt Spaanse likeuren en cava naar Nederland.</p>
+        <p class="nix"><b>NIX18</b> Geniet, maar drink met mate.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul><li>0229-851304</li><li>privacy@gecko-nederland.nl</li><li><a href="https://gecko-nederland.nl/privacyverklaring/" target="_blank" rel="noopener">Privacyverklaring</a></li></ul>
+      </div>
+      <div>
+        <h4>Volg ons</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/geckonederland/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@gecko.nederland" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://www.facebook.com/Gecko.Nederland.nl" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://nl.linkedin.com/company/gecko-nederland" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="credit"><span>© 2026 Gecko Nederland</span><span>Ontwerpvoorstel door saltycodestudio</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var head=document.querySelector('header'),mb=head.querySelector('.menu-btn');
+  function setOpen(o){head.classList.toggle('open',o);mb.setAttribute('aria-expanded',o?'true':'false');mb.setAttribute('aria-label',o?'Menu sluiten':'Menu')}
+  mb.addEventListener('click',function(){setOpen(!head.classList.contains('open'))});
+  head.querySelectorAll('.links a').forEach(function(a){a.addEventListener('click',function(){setOpen(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&head.classList.contains('open')){setOpen(false);mb.focus()}});
+  document.addEventListener('click',function(e){if(head.classList.contains('open')&&!head.contains(e.target))setOpen(false)});
+  matchMedia('(min-width:901px)').addEventListener('change',function(e){if(e.matches)setOpen(false)});
+  var onScroll=function(){head.classList.toggle('scrolled',scrollY>4)};
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var gate=document.getElementById('gate');
+  try{ if(localStorage.getItem('gecko18')==='1') gate.hidden=true; }catch(e){}
+  document.getElementById('gate-yes').addEventListener('click',function(){
+    gate.hidden=true; try{localStorage.setItem('gecko18','1')}catch(e){}
+  });
+  document.getElementById('gate-no').addEventListener('click',function(){
+    document.getElementById('gate-msg').textContent='Dan kun je helaas niet verder. Kom terug als je 18 bent.';
+  });
+  var cp=document.getElementById('copy-phone');
+  cp.addEventListener('click',function(){
+    var reset=function(){setTimeout(function(){cp.textContent='Kopieer nummer'},1800)};
+    var sel=function(){var r=document.createRange();r.selectNodeContents(document.getElementById('phone'));var s=getSelection();s.removeAllRanges();s.addRange(r);cp.textContent='Geselecteerd';reset()};
+    try{navigator.clipboard.writeText('0229-851304').then(function(){cp.textContent='Gekopieerd';reset()},sel)}catch(e){sel()}
+  });
+  document.getElementById('trade-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!this.checkValidity()){this.reportValidity();return}
+    document.getElementById('form-ok').hidden=false;
+  });
+})();
+</script>
